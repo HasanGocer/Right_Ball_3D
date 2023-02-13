@@ -67,6 +67,7 @@ public class Buttons : MonoSingleton<Buttons>
         _globalPanel.SetActive(true);
         startPanel.SetActive(true);
 
+        GridSystem.Instance.startGridSystem();
         MarketSystem.Instance.MarketStart();
     }
     public IEnumerator NoThanxOnActive()
@@ -116,6 +117,7 @@ public class Buttons : MonoSingleton<Buttons>
         GameManager.Instance.gameStat = GameManager.GameStat.start;
         startPanel.SetActive(false);
 
+        GridSystem.Instance.GridPercent();
     }
     private IEnumerator WinButton()
     {
