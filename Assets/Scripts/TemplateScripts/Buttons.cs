@@ -62,7 +62,9 @@ public class Buttons : MonoSingleton<Buttons>
         _loadingPanel.SetActive(true);
         _globalPanel.SetActive(false);
         startPanel.SetActive(false);
+
         yield return new WaitForSeconds(_loadingScreenCountdownTime);
+
         _loadingPanel.SetActive(false);
         _globalPanel.SetActive(true);
         startPanel.SetActive(true);
@@ -118,6 +120,7 @@ public class Buttons : MonoSingleton<Buttons>
         startPanel.SetActive(false);
 
         GridSystem.Instance.GridPercent();
+        StartCoroutine(SelectedSystem.Instance.SelectedSystemEnum());
     }
     private IEnumerator WinButton()
     {
@@ -201,5 +204,4 @@ public class Buttons : MonoSingleton<Buttons>
 
         gameManager.SetVibration();
     }
-
 }

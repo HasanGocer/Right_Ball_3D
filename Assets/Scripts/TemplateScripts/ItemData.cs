@@ -111,6 +111,7 @@ public class ItemData : MonoSingleton<ItemData>
         */
 
         StartCoroutine(Buttons.Instance.LoadingScreen());
+        GridSystem.Instance.startGridSystem();
     }
 
     public void SetCastleHealth()
