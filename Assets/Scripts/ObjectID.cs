@@ -16,6 +16,7 @@ public class ObjectID : MonoBehaviour
     public int ID;
     public int materialCount;
     public Vector3 lastPos;
+    public Vector3 lastGridPos;
     public GameStat objectStat;
     public List<ObjectID> broObject = new List<ObjectID>();
 
@@ -29,7 +30,7 @@ public class ObjectID : MonoBehaviour
         if (isCheck)
             foreach (ObjectID item1 in broObject)
                 foreach (ObjectID item2 in broObject)
-                    if (item1.verticalCount == item2.verticalCount && item1.horizontalCount == item2.horizontalCount) isCheck = true;
+                    if ((item1.verticalCount == item2.verticalCount && item1.horizontalCount == item2.horizontalCount) || GridSystem.Instance.gridSystemField.gridBool[item1.verticalCount, item1.horizontalCount] || GridSystem.Instance.gridSystemField.gridBool[item2.verticalCount, item2.horizontalCount]) isCheck = true;
 
         return isCheck;
     }
@@ -42,6 +43,7 @@ public class ObjectID : MonoBehaviour
 
             verticalCount = gridID.verticalCount;
             horizontalCount = gridID.horizontalCount;
+            lastGridPos = other.transform.position;
 
             objectStat = GameStat.isPlacement;
         }
@@ -52,6 +54,7 @@ public class ObjectID : MonoBehaviour
         {
             verticalCount = -1;
             horizontalCount = -1;
+            lastGridPos = Vector3.zero;
 
             objectStat = GameStat.isTouch;
         }

@@ -11,8 +11,6 @@ public class SelectedSystem : MonoSingleton<SelectedSystem>
     [SerializeField] float _objectSpawnCountdown;
     [SerializeField] float _objectMinFinishDistance;
     [SerializeField] GameObject _startObjectPos, _finishObjectPos;
-    [SerializeField] List<GameObject> Objects = new List<GameObject>();
-    [SerializeField] List<ObjectID> ObjectsIDs = new List<ObjectID>();
 
     public IEnumerator SelectedSystemEnum()
     {
@@ -69,11 +67,17 @@ public class SelectedSystem : MonoSingleton<SelectedSystem>
 
                 if (_objectMinFinishDistance < Vector3.Distance(obj.transform.position, finishObjectPos.transform.position))
                 {
+                    BackAddedObject(obj);
                     objectID.objectStat = ObjectID.GameStat.isFinish;
                     break;
                 }
                 if (objectID.objectStat == ObjectID.GameStat.isPlacement) break;
             }
+            if (objectID.objectStat == ObjectID.GameStat.isPlacement) break;
         }
+    }
+    private void BackAddedObject(GameObject obj)
+    {
+        ObjectPool.Instance.AddObject(_OPStandartOneObjectCount + obj.GetComponent<ObjectID>().ID, obj);
     }
 }

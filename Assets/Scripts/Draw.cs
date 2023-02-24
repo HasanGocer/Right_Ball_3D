@@ -70,7 +70,11 @@ public class Draw : MonoBehaviour
                             }
                             else
                             {
-
+                                objectID.broObject[0].gameObject.transform.position = objectID.broObject[0].lastGridPos;
+                                foreach (ObjectID objectID in objectID.broObject)
+                                {
+                                    GridSystem.Instance.gridSystemField.gridBool[objectID.verticalCount, objectID.horizontalCount] = true;
+                                }
                                 objectID.objectStat = ObjectID.GameStat.isFinish;
                             }
                         }
