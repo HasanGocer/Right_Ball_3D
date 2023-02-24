@@ -12,7 +12,7 @@ public class ObjectID : MonoBehaviour
         isFinish = 3
     }
 
-    public int verticalCount, horizontalCount;
+    public int verticalCount = -1, horizontalCount = -1;
     public int ID;
     public int materialCount;
     public Vector3 lastPos;
@@ -38,11 +38,22 @@ public class ObjectID : MonoBehaviour
     {
         if (other.CompareTag("Grid"))
         {
+            GridID gridID = other.GetComponent<GridID>();
+
+            verticalCount = gridID.verticalCount;
+            horizontalCount = gridID.horizontalCount;
+
             objectStat = GameStat.isPlacement;
         }
     }
     private void OnTriggerExit(Collider other)
     {
+        if (other.CompareTag("Grid"))
+        {
+            verticalCount = -1;
+            horizontalCount = -1;
 
+            objectStat = GameStat.isTouch;
+        }
     }
 }

@@ -25,6 +25,7 @@ public class Draw : MonoBehaviour
             rb.isKinematic = false;
             touchStartedOnPlayer = true;
             touchPlane = true;
+            objectID.objectStat = ObjectID.GameStat.isTouch;
             StartCoroutine(DrawEnum());
         }
     }
@@ -62,10 +63,15 @@ public class Draw : MonoBehaviour
                             touchPlane = false;
                             rb.isKinematic = true;
 
-                            if (objectID.CheckAllObject() && objectID.objectStat == ObjectID.GameStat.isTouch)
+                            if (objectID.CheckAllObject())
                             {
                                 transform.position = objectID.lastPos;
                                 objectID.objectStat = ObjectID.GameStat.isMove;
+                            }
+                            else
+                            {
+
+                                objectID.objectStat = ObjectID.GameStat.isFinish;
                             }
                         }
                         break;
