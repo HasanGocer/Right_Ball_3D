@@ -70,7 +70,7 @@ public class Buttons : MonoSingleton<Buttons>
         startPanel.SetActive(true);
 
         GridSystem.Instance.startGridSystem();
-        MarketSystem.Instance.MarketStart();
+
     }
     public IEnumerator NoThanxOnActive()
     {

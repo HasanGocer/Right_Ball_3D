@@ -6,7 +6,6 @@ public class SelectedSystem : MonoSingleton<SelectedSystem>
 {
     [SerializeField] int _OPStandartOneObjectCount;
     [SerializeField] int _maxOneObjectCount;
-    [SerializeField] int _maxMaterialCount;
     [SerializeField] int _moveSpeedFactor;
     [SerializeField] float _objectSpawnCountdown;
     [SerializeField] float _objectMinFinishDistance;
@@ -22,7 +21,7 @@ public class SelectedSystem : MonoSingleton<SelectedSystem>
             if (gameManager.gameStat == GameManager.GameStat.start)
             {
                 int ID = GetID();
-                int materialCount = Random.Range(0, _maxMaterialCount);
+                int materialCount = Random.Range(0, MaterialManager.Instance.Materials.Count);
                 GameObject obj = GetObject(ID);
                 ObjectID objectID = GetObjectID(obj);
                 IDPlacement(ref objectID, ID, materialCount);

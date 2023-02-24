@@ -6,7 +6,7 @@ using TMPro;
 
 public class MarketSystem : MonoSingleton<MarketSystem>
 {
-    [System.Serializable]
+    /*[System.Serializable]
     public class FieldBool
     {
         public List<bool> MarketFieldBuyed = new List<bool>();
@@ -170,5 +170,5 @@ public class MarketSystem : MonoSingleton<MarketSystem>
     private void MarketOnOffPlacement()
     {
         _marketButton.onClick.AddListener(MarketButton);
-    }
+    }*/
 }

@@ -15,18 +15,16 @@ public class GridSystem : MonoSingleton<GridSystem>
 
     [HideInInspector] public float verticalScale, horizontalScale;
     [SerializeField] int _OPStandartOneObjectCount;
-    [SerializeField] int _objectColorCount;
     [SerializeField] int _gridMinPercent, _gridMaxPercent;
     [SerializeField] int _verticalGridCount, _horizontalGridCount;
-    [SerializeField] float _gridVerticalMaxDistance, _gridHorizontalMaxDistance;
-    [SerializeField] float _gridVerticalDistance, _gridVerticalEmptyDistance;
-    [SerializeField] float _gridHorizontalDistance, _gridHorizontalEmptyDistance;
+    [SerializeField] float _gridVerticalMaxDistance, _gridVerticalDistance, _gridVerticalEmptyDistance;
+    [SerializeField] float _gridHorizontalMaxDistance, _gridHorizontalDistance, _gridHorizontalEmptyDistance;
     [SerializeField] GameObject gridStartPos;
 
     [Header("Grid_Class_Field")]
     [Space(10)]
 
-    public GridSystemField gridSystemField;
+    public GridSystemField gridSystemField = new GridSystemField();
 
     public void startGridSystem()
     {
@@ -68,7 +66,7 @@ public class GridSystem : MonoSingleton<GridSystem>
         while (gridSystemField.gridBool[_horizontalGridCount, _verticalGridCount]);
 
         gridSystemField.gridBool[_horizontalGridCount, _verticalGridCount] = true;
-        gridSystemField.gridColorInt[_horizontalGridCount, _verticalGridCount] = Random.Range(0, _objectColorCount);
+        gridSystemField.gridColorInt[_horizontalGridCount, _verticalGridCount] = Random.Range(0, MaterialManager.Instance.Materials.Count);
 
         obj.GetComponent<MeshRenderer>().material = MaterialManager.Instance.Materials[gridSystemField.gridColorInt[_horizontalGridCount, _verticalGridCount]];
         obj.transform.position = new Vector3(gridStartPos.transform.position.x + horizontalCount * horizontalScale, gridStartPos.transform.position.y + verticalCount * verticalScale, gridStartPos.transform.position.z);

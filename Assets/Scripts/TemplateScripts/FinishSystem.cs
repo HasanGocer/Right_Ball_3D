@@ -7,14 +7,14 @@ public class FinishSystem : MonoSingleton<FinishSystem>
     [Header("Finish_Field")]
     [Space(10)]
 
-    public int deadWalkerCount = 0;
+    private int freefield;
 
     public void FinishCheck()
     {
-        deadWalkerCount++;
-        if (GameManager.Instance.gameStat == GameManager.GameStat.start)
+        if (GameManager.Instance.gameStat == GameManager.GameStat.start && Check())
             FinishTime();
     }
+
     public void FinishTime()
     {
         GameManager gameManager = GameManager.Instance;
@@ -29,5 +29,15 @@ public class FinishSystem : MonoSingleton<FinishSystem>
         buttons.finishGameMoneyText.text = moneySystem.NumberTextRevork(gameManager.addedMoney);
         gameManager.gameStat = GameManager.GameStat.finish;
         moneySystem.MoneyTextRevork(gameManager.addedMoney);
+    }
+
+    private bool Check()
+    {
+        bool isFinish = true;
+
+        for (int i1 = 0; i1 < 6; i1++)
+            for (int i2 = 0; i2 < 6; i2++)
+                if (!GridSystem.Instance.gridSystemField.gridBool[i1, i2]) isFinish = false;
+        return isFinish;
     }
 }
