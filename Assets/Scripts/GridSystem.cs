@@ -63,12 +63,12 @@ public class GridSystem : MonoSingleton<GridSystem>
             horizontalCount = Random.Range(0, _horizontalGridCount);
             verticalCount = Random.Range(0, _verticalGridCount);
         }
-        while (gridSystemField.gridBool[_horizontalGridCount, _verticalGridCount]);
+        while (gridSystemField.gridBool[verticalCount, horizontalCount]);
 
-        gridSystemField.gridBool[_horizontalGridCount, _verticalGridCount] = true;
-        gridSystemField.gridColorInt[_horizontalGridCount, _verticalGridCount] = Random.Range(0, MaterialManager.Instance.Materials.Count);
+        gridSystemField.gridBool[verticalCount, horizontalCount] = true;
+        gridSystemField.gridColorInt[verticalCount, horizontalCount] = Random.Range(0, MaterialManager.Instance.Materials.Count);
 
-        obj.GetComponent<MeshRenderer>().material = MaterialManager.Instance.Materials[gridSystemField.gridColorInt[_horizontalGridCount, _verticalGridCount]];
-        obj.transform.position = new Vector3(gridStartPos.transform.position.x + horizontalCount * horizontalScale, gridStartPos.transform.position.y + verticalCount * verticalScale, gridStartPos.transform.position.z);
+        obj.GetComponent<MeshRenderer>().material = MaterialManager.Instance.Materials[gridSystemField.gridColorInt[verticalCount, horizontalCount]];
+        obj.transform.position = new Vector3(gridStartPos.transform.position.x - horizontalCount * horizontalScale, gridStartPos.transform.position.y, gridStartPos.transform.position.z - verticalCount * verticalScale);
     }
 }

@@ -59,12 +59,12 @@ public class SelectedSystem : MonoSingleton<SelectedSystem>
             if (objectID.objectStat == ObjectID.GameStat.isMove)
             {
                 Vector3 direction = (finishObjectPos.transform.position - obj.transform.position).normalized;
-                obj.transform.position += direction * factor * Time.deltaTime;
-                yield return new WaitForSeconds(Time.deltaTime);
+                obj.transform.position += direction * factor * Time.deltaTime / 3;
+                yield return new WaitForSeconds(Time.deltaTime / 3);
 
                 objectID.lastPos = obj.transform.position;
 
-                if (_objectMinFinishDistance < Vector3.Distance(obj.transform.position, finishObjectPos.transform.position))
+                if (_objectMinFinishDistance > Vector3.Distance(obj.transform.position, finishObjectPos.transform.position))
                 {
                     BackAddedObject(obj);
                     objectID.objectStat = ObjectID.GameStat.isFinish;
